@@ -35,7 +35,7 @@ export const Services = () => {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: idx * 0.1 }}
-                className="bg-surface rounded-2xl border border-black/5 shadow-sm overflow-hidden"
+                className={`bg-surface rounded-2xl border transition-all duration-300 overflow-hidden ${isOpen ? 'border-accent shadow-md' : 'border-black/5 hover:border-accent/20 shadow-sm'}`}
               >
                 <button
                   onClick={() => toggleAccordion(service.id)}

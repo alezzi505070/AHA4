@@ -3,7 +3,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import * as z from 'zod';
 import { CONTACT } from '@/data/content';
 import { motion } from 'framer-motion';
-import { MapPin, Mail, Phone, Clock, Send } from 'lucide-react';
+import { MapPin, Mail, Phone, Clock, Send, User, MessageSquare, AlertCircle } from 'lucide-react';
 import { useState } from 'react';
 
 const contactSchema = z.object({
@@ -118,43 +118,67 @@ export const Contact = () => {
             ) : (
               <form className="space-y-6 flex flex-col" onSubmit={handleSubmit(onSubmit)}>
                 <div>
-                  <input
-                    type="text"
-                    placeholder="الاسم الكامل"
-                    {...register('fullName')}
-                    className={`w-full bg-background border rounded-xl px-4 py-3 text-textPrimary placeholder-textMuted focus:outline-none focus:border-accent shadow-sm ${errors.fullName ? 'border-red-500' : 'border-black/10'}`}
-                  />
-                  {errors.fullName && <p className="text-red-500 text-xs mt-1">{errors.fullName.message}</p>}
+                  <div className="relative">
+                    <User className="absolute right-4 top-1/2 -translate-y-1/2 text-textMuted w-5 h-5" />
+                    <input
+                      type="text"
+                      placeholder="الاسم الكامل"
+                      {...register('fullName')}
+                      className={`w-full bg-background border rounded-xl pr-12 pl-10 py-3 text-textPrimary placeholder-textMuted focus:outline-none focus:border-accent shadow-sm ${errors.fullName ? 'border-red-500' : 'border-black/10'}`}
+                    />
+                    {errors.fullName && (
+                      <AlertCircle className="absolute left-4 top-1/2 -translate-y-1/2 text-red-500 w-5 h-5" />
+                    )}
+                  </div>
+                  {errors.fullName && <p className="text-red-500 text-xs mt-1 pr-2">{errors.fullName.message}</p>}
                 </div>
 
                 <div>
-                  <input
-                    type="email"
-                    placeholder="البريد الإلكتروني"
-                    {...register('email')}
-                    className={`w-full bg-background border rounded-xl px-4 py-3 text-textPrimary placeholder-textMuted focus:outline-none focus:border-accent shadow-sm ${errors.email ? 'border-red-500' : 'border-black/10'}`}
-                  />
-                  {errors.email && <p className="text-red-500 text-xs mt-1">{errors.email.message}</p>}
+                  <div className="relative">
+                    <Mail className="absolute right-4 top-1/2 -translate-y-1/2 text-textMuted w-5 h-5" />
+                    <input
+                      type="email"
+                      placeholder="البريد الإلكتروني"
+                      {...register('email')}
+                      className={`w-full bg-background border rounded-xl pr-12 pl-10 py-3 text-textPrimary placeholder-textMuted focus:outline-none focus:border-accent shadow-sm ${errors.email ? 'border-red-500' : 'border-black/10'}`}
+                    />
+                    {errors.email && (
+                      <AlertCircle className="absolute left-4 top-1/2 -translate-y-1/2 text-red-500 w-5 h-5" />
+                    )}
+                  </div>
+                  {errors.email && <p className="text-red-500 text-xs mt-1 pr-2">{errors.email.message}</p>}
                 </div>
 
                 <div>
-                  <input
-                    type="tel"
-                    placeholder="رقم الهاتف"
-                    {...register('phone')}
-                    className={`w-full bg-background border rounded-xl px-4 py-3 text-textPrimary placeholder-textMuted focus:outline-none focus:border-accent shadow-sm ${errors.phone ? 'border-red-500' : 'border-black/10'}`}
-                  />
-                  {errors.phone && <p className="text-red-500 text-xs mt-1">{errors.phone.message}</p>}
+                  <div className="relative">
+                    <Phone className="absolute right-4 top-1/2 -translate-y-1/2 text-textMuted w-5 h-5" />
+                    <input
+                      type="tel"
+                      placeholder="رقم الهاتف"
+                      {...register('phone')}
+                      className={`w-full bg-background border rounded-xl pr-12 pl-10 py-3 text-textPrimary placeholder-textMuted focus:outline-none focus:border-accent shadow-sm ${errors.phone ? 'border-red-500' : 'border-black/10'}`}
+                    />
+                    {errors.phone && (
+                      <AlertCircle className="absolute left-4 top-1/2 -translate-y-1/2 text-red-500 w-5 h-5" />
+                    )}
+                  </div>
+                  {errors.phone && <p className="text-red-500 text-xs mt-1 pr-2">{errors.phone.message}</p>}
                 </div>
 
                 <div>
-                  <textarea
-                    placeholder="رسالتك الاستفسارية"
-                    rows={4}
-                    {...register('message')}
-                    className={`w-full bg-background border rounded-xl px-4 py-3 text-textPrimary placeholder-textMuted focus:outline-none focus:border-accent shadow-sm ${errors.message ? 'border-red-500' : 'border-black/10'}`}
-                  />
-                  {errors.message && <p className="text-red-500 text-xs mt-1">{errors.message.message}</p>}
+                  <div className="relative">
+                    <MessageSquare className="absolute right-4 top-6 text-textMuted w-5 h-5" />
+                    <textarea
+                      placeholder="رسالتك الاستفسارية"
+                      rows={4}
+                      {...register('message')}
+                      className={`w-full bg-background border rounded-xl pr-12 pl-10 py-3 text-textPrimary placeholder-textMuted focus:outline-none focus:border-accent shadow-sm ${errors.message ? 'border-red-500' : 'border-black/10'}`}
+                    />
+                    {errors.message && (
+                      <AlertCircle className="absolute left-4 top-6 text-red-500 w-5 h-5" />
+                    )}
+                  </div>
+                  {errors.message && <p className="text-red-500 text-xs mt-1 pr-2">{errors.message.message}</p>}
                 </div>
 
                 <button

@@ -116,11 +116,14 @@ export const Navbar = () => {
         href={CONTACT.whatsapp}
         target="_blank"
         rel="noopener noreferrer"
-        className="fixed bottom-8 left-8 z-[90] bg-primary text-white p-4 rounded-full shadow-[0_0_20px_rgba(62,39,35,0.4)] hover:scale-110 hover:shadow-[0_0_30px_rgba(62,39,35,0.6)] transition-all duration-300"
+        className="fixed bottom-8 left-8 z-[90] bg-primary text-white p-4 rounded-full shadow-[0_0_20px_rgba(62,39,35,0.4)] hover:scale-110 hover:shadow-[0_0_30px_rgba(62,39,35,0.6)] transition-all duration-300 group"
         title="تواصل معنا مباشرة"
       >
         <MessageCircle size={28} />
         <span className="absolute inset-0 rounded-full bg-primary animate-ping opacity-30"></span>
+        <span className="absolute right-16 top-1/2 -translate-y-1/2 bg-primary text-white text-xs px-3 py-1.5 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap shadow-md pointer-events-none">
+          تواصل معنا عبر واتساب
+        </span>
       </a>
     </>
   );
