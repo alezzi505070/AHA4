@@ -1,16 +1,24 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { NAV_LINKS } from '@/data/content';
+import { NAV_LINKS, CONTACT } from '@/data/content';
 import { Menu, X, MessageCircle } from 'lucide-react';
 
 export const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
+  const [currentHash, setCurrentHash] = useState(window.location.hash || '#/');
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 50);
+    const handleHashChange = () => setCurrentHash(window.location.hash || '#/');
+
     window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    window.addEventListener('hashchange', handleHashChange);
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener('hashchange', handleHashChange);
+    };
   }, []);
 
   return (
@@ -24,7 +32,7 @@ export const Navbar = () => {
         }`}
       >
         <div className="container mx-auto px-6 lg:px-12 flex justify-between items-center">
-          <a href="#" className="flex items-center gap-2 group perspective-[1000px]">
+          <a href="#/" className="flex items-center gap-2 group perspective-[1000px]">
             <span className="text-2xl font-serif font-bold text-transparent bg-clip-text bg-gradient-to-r from-primary to-primary/80 group-hover:from-accent group-hover:to-accent/80 transition-all duration-300">
               AHA Office
             </span>
@@ -32,20 +40,27 @@ export const Navbar = () => {
 
           {/* Desktop Nav */}
           <nav className="hidden md:flex gap-10">
-            {NAV_LINKS.map((link, idx) => (
-              <motion.a
-                key={link.label}
-                href={link.href}
-                initial={{ opacity: 0, y: -20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.1 + idx * 0.1, duration: 0.5, ease: "easeOut" }}
-                whileHover={{ y: -2 }}
-                className={`${scrolled ? 'text-primary hover:text-accent' : 'text-primary/80 hover:text-primary'} transition-colors relative group text-sm font-semibold tracking-wide`}
-              >
-                {link.label}
-                <span className="absolute -bottom-2 left-0 right-0 h-[2px] bg-accent scale-x-0 group-hover:scale-x-100 transition-transform origin-right duration-300" />
-              </motion.a>
-            ))}
+            {NAV_LINKS.map((link, idx) => {
+              const isActive = currentHash === link.href;
+              return (
+                <motion.a
+                  key={link.label}
+                  href={link.href}
+                  initial={{ opacity: 0, y: -20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.1 + idx * 0.1, duration: 0.5, ease: "easeOut" }}
+                  whileHover={{ y: -2 }}
+                  className={`${
+                    isActive 
+                      ? 'text-accent font-bold' 
+                      : (scrolled ? 'text-primary hover:text-accent' : 'text-primary/80 hover:text-primary')
+                  } transition-colors relative group text-sm font-semibold tracking-wide`}
+                >
+                  {link.label}
+                  <span className={`absolute -bottom-2 left-0 right-0 h-[2px] bg-accent transition-transform origin-right duration-300 ${isActive ? 'scale-x-100' : 'scale-x-0 group-hover:scale-x-100'}`} />
+                </motion.a>
+              );
+            })}
           </nav>
 
           {/* Mobile Toggle */}
@@ -75,19 +90,22 @@ export const Navbar = () => {
               </button>
             </div>
             <nav className="flex flex-col gap-6">
-              {NAV_LINKS.map((link, i) => (
-                <motion.a
-                  initial={{ opacity: 0, x: 20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: i * 0.1 + 0.1 }}
-                  key={link.label}
-                  href={link.href}
-                  onClick={() => setIsOpen(false)}
-                  className="text-2xl text-textMuted hover:text-accent hover:pl-4 transition-all duration-300 font-serif border-b border-black/5 pb-4"
-                >
-                  {link.label}
-                </motion.a>
-              ))}
+              {NAV_LINKS.map((link, i) => {
+                const isActive = currentHash === link.href;
+                return (
+                  <motion.a
+                    initial={{ opacity: 0, x: 20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: i * 0.1 + 0.1 }}
+                    key={link.label}
+                    href={link.href}
+                    onClick={() => setIsOpen(false)}
+                    className={`text-2xl ${isActive ? 'text-accent font-bold' : 'text-textMuted'} hover:text-accent hover:pl-4 transition-all duration-300 font-serif border-b border-black/5 pb-4`}
+                  >
+                    {link.label}
+                  </motion.a>
+                );
+              })}
             </nav>
           </motion.div>
         )}
@@ -95,7 +113,7 @@ export const Navbar = () => {
 
       {/* WhatsApp Floating Button */}
       <a
-        href="https://api.whatsapp.com/send?phone=0060173740140"
+        href={CONTACT.whatsapp}
         target="_blank"
         rel="noopener noreferrer"
         className="fixed bottom-8 left-8 z-[90] bg-primary text-white p-4 rounded-full shadow-[0_0_20px_rgba(62,39,35,0.4)] hover:scale-110 hover:shadow-[0_0_30px_rgba(62,39,35,0.6)] transition-all duration-300"
