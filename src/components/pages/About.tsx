@@ -41,7 +41,7 @@ export const About = () => {
               يقود عمليات المكتب كفاءات مهنية مؤهلة تأهيلاً عالياً وتدعمها خبرات عربية وإقليمية متراكمة. نسعى دوماً لتزويد عملائنا بأفضل الحلول والخدمات المهنية التي تسهم بفعالية في تبسيط سير أعمالهم وتوفر عليهم الوقت والجهد والتكاليف.
             </p>
             <p>
-              علاقتنا الوثيقة وتحالفاتنا المهنية الممتدة (ومنها التعاون الاستراتيجي مع مكاتب طلال أبوغزاله العالمية) تمنحنا بعداً دولياً وتغطية إقليمية ممتازة تضمن تقديم خدمات استشارية ومحاسبية بمعايير مهنية فائقة الجودة.
+              علاقتنا المهنية الوثيقة وتحالفاتنا الممتدة تمنحنا بعداً دولياً وتغطية ممتازة تضمن تقديم خدمات استشارية ومحاسبية بمعايير مهنية فائقة الجودة تلبي تطلعات عملائنا وتسهم في رفع كفاءة أداء مؤسساتهم.
             </p>
           </motion.div>
 
@@ -85,8 +85,9 @@ export const About = () => {
               return (
                 <motion.div
                   key={idx}
-                  whileHover={{ y: -8 }}
-                  className="bg-surface p-8 rounded-3xl border border-black/5 shadow-sm flex flex-col h-full"
+                  whileHover={{ y: -8, scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
+                  className="bg-gradient-to-br from-white/95 to-white/60 backdrop-blur-xl p-8 rounded-3xl border border-black/5 hover:border-accent/40 shadow-sm hover:shadow-[0_20px_45px_rgba(184,155,88,0.12)] flex flex-col h-full transition-all duration-300"
                 >
                   <div className="w-12 h-12 rounded-2xl bg-accent/10 flex items-center justify-center text-accent mb-6">
                     <Icon size={24} />

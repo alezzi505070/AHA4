@@ -48,7 +48,7 @@ export const Hero = () => {
           className="inline-block mb-6 px-6 py-2 rounded-full border border-accent/20 bg-accent/5 backdrop-blur-sm shadow-sm"
         >
           <span className="text-accent tracking-widest text-sm lg:text-base font-semibold">
-            عضو في طلال أبو غزاله الدولي
+            عبد الرؤوف حسان محاسب قانوني
           </span>
         </motion.div>
         

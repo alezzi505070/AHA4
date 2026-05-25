@@ -1,7 +1,6 @@
 import { BackgroundPaths } from '@/components/ui/background-paths';
 import { StatsBar } from '@/components/sections/StatsBar';
 import { About } from '@/components/sections/About';
-import { TagAffiliation } from '@/components/sections/TagAffiliation';
 import { Services } from '@/components/sections/Services';
 import { Sectors } from '@/components/sections/Sectors';
 import { WhyUs } from '@/components/sections/WhyUs';
@@ -27,7 +26,6 @@ export const Home = () => {
           </a>
         </div>
       </div>
-      <TagAffiliation />
       <WhyUs />
       <Services />
       <Sectors />

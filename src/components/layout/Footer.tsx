@@ -60,7 +60,7 @@ export const Footer = () => {
             <a href={CONTACT.whatsapp} target="_blank" rel="noopener noreferrer" className="hover:text-accent transition-colors flex items-center gap-1">
               واتساب <MessageSquare size={14} />
             </a>
-            <span>عضو في شبكة طلال أبوغزاله العالمية (TAG-Audit)</span>
+            <span>مكتب عبد الرؤوف حسان - محاسبون قانونيون ومستشارون</span>
           </div>
         </div>
 
